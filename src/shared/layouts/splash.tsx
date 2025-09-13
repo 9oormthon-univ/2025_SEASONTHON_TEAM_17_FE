@@ -1,4 +1,3 @@
-import LogoIcon from '@assets/icons/logo.svg?react';
 import Icon from '@components/icon';
 import Intro from '@components/intro';
 import { cn } from '@libs/cn';
