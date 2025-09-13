@@ -1,4 +1,5 @@
 import ChipButton from '@components/chips/chip-button';
+import Icon from '@components/icon';
 import { DIARY_EMOTIONS } from '@pages/diary/constants/diary-emotions';
 
 export type EmotionId = (typeof DIARY_EMOTIONS)[number]['id'];
@@ -29,11 +30,14 @@ export default function ReactionBarChipsLite({
         if (!meta) return null;
         const active = myToggles.has(id);
         const value = counts[id] ?? 0;
+        const IconC = ({ rotate, ...p }: React.SVGProps<SVGSVGElement>) => (
+          <Icon name={meta.icon} size={size === 'large' ? 1.8 : 1.4} ariaHidden {...p} />
+        );
         return (
           <ChipButton
             key={id}
             size={size}
-            Icon={meta.Icon}
+            Icon={IconC}
             isSelected={active}
             onClick={() => onToggle(id)}
           >

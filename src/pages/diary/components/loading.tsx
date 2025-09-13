@@ -1,9 +1,9 @@
-import Speak3D from '@assets/icons/3d-speak.svg?react';
+import Icon from '@components/icon';
 import LoadingSpinner from '@pages/diary/components/loading-spinner';
 export default function Loading() {
   return (
     <div className="flex-col-center gap-[2rem] py-[15.2rem]">
-      <Speak3D className="h-[20rem] w-[20rem]" />
+      <Icon name="3d-speak" size={20} />
       <LoadingSpinner />
       <p className="body1-500 text-center text-gary-900">
         마몬이 당신의 감정 일기를 보고

@@ -1,5 +1,5 @@
 import { cn } from '@libs/cn';
-import FriendsListItem, { type Friend } from './friends-list-item';
+import FriendsListItem, { type Friend } from '@pages/friends/components/friends-list-item';
 
 type Props = {
   items: Friend[];

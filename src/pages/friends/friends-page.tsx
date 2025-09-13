@@ -1,8 +1,8 @@
 import { friendsMutations } from '@apis/friends/friends-mutations';
 import { friendsQueries } from '@apis/friends/friends-queries';
-import ThinkIcon from '@assets/icons/thinking.svg?react';
 import FriendCancelSheet from '@components/bottom-sheet/friend-cancel-sheet';
 import Button from '@components/button/button';
+import Icon from '@components/icon';
 import { useToast } from '@contexts/toast-context';
 import { cn } from '@libs/cn';
 import FriendsHeader from '@pages/friends/components/friends-header';
@@ -198,7 +198,7 @@ export default function FriendsPage() {
 
         {isEmpty ? (
           <div className="flex-col-center gap-[3rem] py-[2.6rem]">
-            <ThinkIcon className="h-[6.4rem] w-[6.4rem]" />
+            <Icon name="thinking" size={6.4} />
             <span className="heading3-700 text-gray-900">
               {searching ? '검색 결과가 없어요' : '아직 등록된 친구가 없어요'}
             </span>

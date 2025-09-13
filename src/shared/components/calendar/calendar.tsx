@@ -1,5 +1,4 @@
-import ArrowIcon from '@assets/icons/calendar-arrow.svg?react';
-import HeartIcon from '@assets/icons/heart.svg?react';
+import Icon from '@components/icon';
 import {
   addMonths,
   eachDayOfInterval,
@@ -85,7 +84,7 @@ export default function Calendar({
             aria-label="이전 달"
             type="button"
           >
-            <ArrowIcon className="h-[2.4rem] w-[2.4rem] cursor-pointer" />
+            <Icon name="calendar-arrow" size={2.4} className="cursor-pointer" />
           </button>
 
           <div className="font-semibold text-[1.6rem] tracking-[-0.2px]">{monthLabel}</div>
@@ -96,7 +95,7 @@ export default function Calendar({
             aria-label="다음 달"
             type="button"
           >
-            <ArrowIcon className="h-[2.4rem] w-[2.4rem] rotate-180 cursor-pointer" />
+            <Icon name="calendar-arrow" rotate={180} size={2.4} className="cursor-pointer" />
           </button>
         </div>
 
@@ -187,7 +186,7 @@ export default function Calendar({
 
                   {hasMark && (
                     <span className="-translate-x-1/2 absolute bottom-[0.7rem] left-1/2 z-10 flex h-[1.6rem] w-[1.6rem] items-center justify-center rounded-full text-primary-800">
-                      <HeartIcon />
+                      <Icon name="heart" />
                     </span>
                   )}
                 </button>

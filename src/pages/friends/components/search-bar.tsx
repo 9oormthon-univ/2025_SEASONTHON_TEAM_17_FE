@@ -1,4 +1,4 @@
-import SearchIcon from '@assets/icons/search.svg?react';
+import Icon from '@components/icon';
 import { cn } from '@libs/cn';
 import { useRef } from 'react';
 
@@ -53,7 +53,7 @@ export default function SearchBar({
         )}
       />
       <button type="submit" aria-label="검색 실행" disabled={disabled} className="shrink-0">
-        <SearchIcon className="h-[2.4rem] w-[2.4rem] text-primary-600" />
+        <Icon name="search" size={2.4} className="text-primary-600" />
       </button>
     </form>
   );

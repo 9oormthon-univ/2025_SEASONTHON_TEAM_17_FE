@@ -1,4 +1,4 @@
-import LogoIcon from '@assets/icons/logo.svg?react';
+import Icon from '@components/icon';
 import { cn } from '@libs/cn';
 import type * as React from 'react';
 
@@ -39,7 +39,7 @@ export default function Intro({
       </div>
 
       <div className={cn('h-[12rem] w-[12rem]', iconClassName)}>
-        {icon ?? <LogoIcon className="h-full w-full" aria-hidden />}
+        {icon ?? <Icon name="logo" className="h-full w-full" aria-hidden />}
       </div>
     </div>
   );

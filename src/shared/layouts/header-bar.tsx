@@ -1,6 +1,4 @@
-import BellIcon from '@assets/icons/alarm.svg?react';
-import ArrowIcon from '@assets/icons/arrow.svg?react';
-import LogoIcon from '@assets/icons/logo.svg?react';
+import Icon from '@components/icon';
 import { useNavigate } from 'react-router-dom';
 
 export type HeaderVariant = 'home' | 'title';
@@ -45,14 +43,14 @@ export default function Header({
               aria-label="뒤로가기"
               className="grid h-[2.8rem] w-[2.8rem] cursor-pointer place-items-center"
             >
-              <ArrowIcon className="h-[2.8rem] w-[2.8rem] rotate-180 text-gray-600" />
+              <Icon name="arrow" rotate={180} className="h-[2.8rem] w-[2.8rem] text-gray-600" />
             </button>
           )}
         </div>
 
         <div className="flex-row-center">
           {variant === 'home' ? (
-            <LogoIcon className="h-[2.8rem] w-[2.8rem] text-primary-500" />
+            <Icon name="logo" size={2.8} className="text-primary-500" />
           ) : (
             <h1 className={['heading2-600 text-gray-900', title ? '' : 'invisible'].join(' ')}>
               {title}
@@ -68,7 +66,7 @@ export default function Header({
               onClick={onBellClick}
               className="grid cursor-pointer place-items-center"
             >
-              <BellIcon className="h-[2.8rem] w-[2.8rem] text-primary-500" />
+              <Icon name="alarm" className="h-[2.8rem] w-[2.8rem] text-primary-500" />
             </button>
           ) : null}
         </div>

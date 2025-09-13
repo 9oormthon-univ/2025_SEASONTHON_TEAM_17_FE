@@ -1,4 +1,4 @@
-import LogoIcon from '@assets/icons/logo.svg?react';
+import Icon from '@components/icon';
 import Intro from '@components/intro';
 import { cn } from '@libs/cn';
 import { useEffect, useState } from 'react';
@@ -65,7 +65,8 @@ export default function Splash({ onComplete }: SplashProps) {
           key="phase-2"
           highlightColor="primary"
           icon={
-            <LogoIcon
+            <Icon
+              name="logo"
               aria-hidden
               className={cn(
                 'h-full w-full transform transition-[opacity,transform] duration-500 ease-in',

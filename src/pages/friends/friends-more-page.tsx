@@ -1,7 +1,7 @@
 import { friendsMutations } from '@apis/friends/friends-mutations';
 import { friendsQueries } from '@apis/friends/friends-queries';
-import ThinkIcon from '@assets/icons/thinking.svg?react';
 import FriendCancelSheet from '@components/bottom-sheet/friend-cancel-sheet';
+import Icon from '@components/icon';
 import FriendsList from '@pages/friends/components/friends-list';
 import SearchBar from '@pages/friends/components/search-bar';
 import SegmentedTabs from '@pages/friends/components/segmented-tabs';
@@ -146,7 +146,7 @@ export default function FriendsMorePage() {
 
         {items.length === 0 ? (
           <div className="flex-col-center gap-[3rem] py-[2.6rem]">
-            <ThinkIcon className="h-[6.4rem] w-[6.4rem]" />
+            <Icon name="thinking" size={6.4} />
             <span className="heading3-700 text-gray-900">결과가 없어요</span>
           </div>
         ) : (

@@ -1,18 +1,31 @@
+import path from 'node:path';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
-import svgr from 'vite-plugin-svgr';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   build: {
+    sourcemap: false,
+    minify: false,
+    cssMinify: false,
     assetsInlineLimit: 0,
+    chunkSizeWarningLimit: 1500,
     rollupOptions: {
       output: {
-        manualChunks: {
-          react: ['react', 'react-dom'],
-          dayjs: ['dayjs'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('scheduler')) return 'vendor-react';
+            if (id.includes('@tanstack/')) return 'vendor-query';
+            if (id.includes('react-router')) return 'vendor-router';
+            if (/jotai|zustand/.test(id)) return 'vendor-state';
+            if (id.includes('dayjs')) return 'vendor-dayjs';
+            return 'vendor';
+          }
+          const m = id.match(/[/\\]src[/\\]pages[/\\]([^/\\]+)/);
+          return m ? `page-${m[1]}` : undefined;
         },
       },
     },
@@ -21,7 +34,10 @@ export default defineConfig({
     react(),
     tailwindcss(),
     tsconfigPaths(),
-    svgr(),
+    createSvgIconsPlugin({
+      iconDirs: [path.resolve(process.cwd(), 'src/shared/assets/icons')],
+      symbolId: 'icon-[name]',
+    }),
     VitePWA({
       strategies: 'generateSW',
       injectRegister: 'auto',
@@ -40,12 +56,13 @@ export default defineConfig({
         ],
       },
       workbox: {
-        maximumFileSizeToCacheInBytes: 15 * 1024 * 1024,
-
-        globPatterns: ['**/*.{js,css,html,ico,svg,webp,avif,woff2}'],
-
-        globIgnores: ['**/assets/divider-*.js', '**/assets/diary-mammon-card-*.js', '**/image.png'],
-
+        globPatterns: ['**/*.{html,css,ico,svg,webp,avif,woff2}'],
+        globIgnores: [
+          '**/image.png',
+          '**/assets/divider-*.js',
+          '**/assets/diary-mammon-card-*.js',
+          '**/assets/emotion-like-store-*.js',
+        ],
         runtimeCaching: [
           {
             urlPattern: ({ request }) => request.destination === 'script',
