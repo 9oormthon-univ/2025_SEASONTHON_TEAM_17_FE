@@ -1,6 +1,5 @@
-import HeartIcon from '@assets/icons/heart.svg?react';
-import KakaoIcon from '@assets/icons/kakao.svg?react';
 import Button, { type ButtonProps } from '@components/button/button';
+import Icon from '@components/icon';
 import { cn } from '@libs/cn';
 
 const baseBtn =
@@ -68,7 +67,7 @@ export function KakaoStartCTA({
     <Button
       className={cn(baseBtn, 'gap-[2rem] bg-kakao-bgd text-kakao-text', className)}
       labelClassName={cn('heading3-700', labelClassName)}
-      leftIcon={leftIcon ?? <KakaoIcon className="h-[2.4rem] w-[2.4rem]" />}
+      leftIcon={leftIcon ?? <Icon name="kakao" size={2.4} />}
       leftIconClassName={cn(leftIconClassName)}
       {...props}
     >
@@ -89,7 +88,7 @@ export function MaeumStartCTA({
     <Button
       className={cn(baseBtn, 'gap-[0.8rem] bg-gray-900 text-gray-50', className)}
       labelClassName={cn('heading2-700', labelClassName)}
-      leftIcon={leftIcon ?? <HeartIcon className="h-[2.0rem] w-[2.0rem]" />}
+      leftIcon={leftIcon ?? <Icon name="heart" size={2} />}
       leftIconClassName={cn('text-primary-600', leftIconClassName)}
       {...props}
     >

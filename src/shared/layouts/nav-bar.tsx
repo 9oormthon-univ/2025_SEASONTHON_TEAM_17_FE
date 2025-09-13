@@ -1,7 +1,4 @@
-import DiaryIcon from '@assets/icons/book.svg?react';
-import FriendIcon from '@assets/icons/friend.svg?react';
-import HomeIcon from '@assets/icons/home.svg?react';
-import ProfileIcon from '@assets/icons/profile.svg?react';
+import Icon from '@components/icon';
 import { Link, useLocation } from 'react-router-dom';
 
 export default function NavigationBar() {
@@ -21,22 +18,22 @@ export default function NavigationBar() {
     {
       title: '홈',
       to: '/',
-      icon: <HomeIcon className={iconStyle} />,
+      icon: <Icon name="home" className={iconStyle} />,
     },
     {
       title: '일기',
       to: '/diary',
-      icon: <DiaryIcon className={iconStyle} />,
+      icon: <Icon name="book" className={iconStyle} />,
     },
     {
       title: '친구',
       to: '/friends',
-      icon: <FriendIcon className={iconStyle} />,
+      icon: <Icon name="friend" className={iconStyle} />,
     },
     {
       title: '내 정보',
       to: '/mypage',
-      icon: <ProfileIcon className={iconStyle} />,
+      icon: <Icon name="profile" className={iconStyle} />,
     },
   ];
 

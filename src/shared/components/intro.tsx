@@ -1,4 +1,5 @@
 import LogoIcon from '@assets/icons/logo.svg?react';
+import Icon from '@components/icon';
 import { cn } from '@libs/cn';
 import type * as React from 'react';
 

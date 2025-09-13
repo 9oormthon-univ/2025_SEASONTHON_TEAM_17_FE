@@ -1,8 +1,8 @@
 import { diariesApi } from '@apis/diaries/diaries';
 import { diariesQueries } from '@apis/diaries/diaries-queries';
-import ThinkIcon from '@assets/icons/thinking.svg?react';
 import DiaryCard from '@components/card/diary-card';
 import DiaryMammonCard from '@components/card/diary-mammon-card';
+import Icon from '@components/icon';
 import type { EmotionId, ReactionCounts } from '@components/reaction/reaction-bar-chips-lite';
 import { DIARY_EMOTIONS } from '@pages/diary/constants/diary-emotions';
 import { emotionLikeStore, useEmotionLikesVersion } from '@pages/diary/stores/emotion-like-store';
@@ -162,7 +162,9 @@ export default function FriendDiaryPage() {
         if (prevEmotionId) emotionLikeStore.setLiked(prevEmotionId, prevLiked);
         emotionLikeStore.setLiked(nextId, nextLiked);
         setCounts(initialCounts);
-        qc.invalidateQueries({ queryKey: diariesQueries.detail(idNum).queryKey });
+        qc.invalidateQueries({
+          queryKey: diariesQueries.detail(idNum).queryKey,
+        });
       }
     },
     [emotionIdByType, currentSelectedType, initialCounts, qc, idNum],
@@ -173,7 +175,7 @@ export default function FriendDiaryPage() {
       <div className="flex-col gap-[1.2rem]">
         {isEmpty ? (
           <div className="flex-col-center gap-[2rem] py-[2.6rem]">
-            <ThinkIcon className="h-[6.4rem] w-[6.4rem]" />
+            <Icon name="thinking" size={6.4} />
             <span className="heading3-700 pt-[3rem] text-gray-900">아직 등록된 일기가 없어요</span>
           </div>
         ) : (

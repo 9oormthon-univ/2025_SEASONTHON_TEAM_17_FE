@@ -1,9 +1,9 @@
 import { diariesQueries } from '@apis/diaries/diaries-queries';
 import { friendsMutations } from '@apis/friends/friends-mutations';
 import DefaultProfile from '@assets/icons/3d-hand.svg';
-import ThinkIcon from '@assets/icons/thinking.svg?react';
 import Button from '@components/button/button';
 import DiaryCard from '@components/card/diary-card';
+import Icon from '@components/icon';
 import { useToast } from '@contexts/toast-context';
 import { cn } from '@libs/cn';
 import {
@@ -152,7 +152,7 @@ export default function FriendDetailPage() {
 
         {diaries.length === 0 ? (
           <div className="flex-col-center gap-[3rem] py-[7rem]">
-            <ThinkIcon className="h-[6.4rem] w-[6.4rem]" />
+            <Icon name="thinking" size={6.2} />
             <p className="heading3-700 text-gray-900">아직 작성된 일기가 없어요</p>
           </div>
         ) : (

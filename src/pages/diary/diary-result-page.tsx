@@ -1,8 +1,8 @@
 import { diariesApi } from '@apis/diaries/diaries';
 import { diariesQueries } from '@apis/diaries/diaries-queries';
-import Pencil3D from '@assets/icons/3d-pencil.svg?react';
 import DiaryCompleteSheet from '@components/bottom-sheet/diary-complete-sheet';
 import DiaryMammonCard from '@components/card/diary-mammon-card';
+import Icon from '@components/icon';
 import {
   DIARY_COUNT,
   type EmotionId,
@@ -170,7 +170,7 @@ export default function DiaryResultPage() {
 
   return (
     <div className="flex-col-center gap-[2rem] px-[2.4rem] pt-[2rem] pb-[20rem]">
-      <Pencil3D className="h-[20rem] w-[20rem]" />
+      <Icon size={20} name="3d-pencil" />
       <p className="body1-500 text-center text-gray-900">
         마몬이 분석한 내용이에요!
         <br />

@@ -1,4 +1,4 @@
-import FriendsIcon from '@assets/icons/3d-friends.svg?react';
+import Icon from '@components/icon';
 import { cn } from '@libs/cn';
 
 type Props = {
@@ -30,7 +30,7 @@ export default function FriendsHeader({
           <span>를 찾고 계신가요?</span>
         </h1>
 
-        <FriendsIcon className="h-[20rem] w-[20rem]" />
+        <Icon name="3d-friends" size={20} />
 
         <p className="heading2-600 text-center text-gray-900">
           친구와 함께 감정 일기를 공유해봐요!

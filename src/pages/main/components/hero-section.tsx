@@ -1,5 +1,5 @@
 import { membersQueries } from '@apis/members/members-queries';
-import Heart from '@assets/icons/3d-heart.svg?react';
+import Icon from '@components/icon';
 import { cn } from '@libs/cn';
 import { useQuery } from '@tanstack/react-query';
 
@@ -38,7 +38,7 @@ export default function HeroSection({
           <span>님</span>
         </h1>
 
-        <Heart className="h-[20rem] w-[20rem]" />
+        <Icon name="3d-heart" size={20} />
 
         {showSubtitle && (
           <p className="heading2-600 text-center text-gray-900">

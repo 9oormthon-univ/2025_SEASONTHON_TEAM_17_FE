@@ -1,6 +1,6 @@
-import AddImageIcon from '@assets/icons/add-image.svg?react';
 import BottomSheet from '@components/bottom-sheet/bottom-sheet';
 import { PrimaryCTA } from '@components/button/cta-button';
+import Icon from '@components/icon';
 import { cn } from '@libs/cn';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
@@ -66,7 +66,7 @@ export default function ProfilePhotoSheet({
           {url ? (
             <img src={url} alt="미리보기" className="h-full w-full rounded-full object-cover" />
           ) : (
-            <AddImageIcon className="h-[2.4rem] w-[2.4rem] text-gray-600" />
+            <Icon name="add-image" size={2.4} className="text-gray-600" />
           )}
         </label>
         <span className="body2-600 text-gray-900">사진 올리기</span>

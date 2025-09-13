@@ -1,4 +1,4 @@
-import ArrowIcon from '@assets/icons/arrow.svg?react';
+import Icon from '@components/icon';
 import { cn } from '@libs/cn';
 import type { ReactNode } from 'react';
 
@@ -61,12 +61,12 @@ export default function SettingRow({
               className="flex cursor-pointer items-center gap-[0.8rem] hover:opacity-80"
             >
               {right}
-              {arrow && <ArrowIcon aria-hidden className="size-[2rem] text-gray-500" />}
+              {arrow && <Icon name="arrow" size={2} aria-hidden className="text-gray-500" />}
             </button>
           ) : (
             <div className="flex items-center gap-[0.8rem]">
               {right}
-              {arrow && <ArrowIcon aria-hidden className="size-[2rem] text-gray-500" />}
+              {arrow && <Icon name="arrow" size={2} aria-hidden className="text-gray-500" />}
             </div>
           )}
         </div>

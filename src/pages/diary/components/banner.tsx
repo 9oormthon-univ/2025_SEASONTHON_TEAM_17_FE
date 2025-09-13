@@ -1,5 +1,5 @@
-import Diary3D from '@assets/icons/3d-diary.svg?react';
 import { PrimaryCTA } from '@components/button/cta-button';
+import Icon from '@components/icon';
 import { cn } from '@libs/cn';
 import { useNavigate } from 'react-router-dom';
 
@@ -39,7 +39,7 @@ export default function Banner({
         <p className="body2-500 text-primary-500">{subtitle}</p>
       </div>
 
-      <Diary3D className="z-[1] h-[20rem] w-[20rem]" />
+      <Icon size={20} className="z-[1]" name="3d-diary" />
       <PrimaryCTA
         className="heading2-700 z-[1]"
         onClick={handleClick}
