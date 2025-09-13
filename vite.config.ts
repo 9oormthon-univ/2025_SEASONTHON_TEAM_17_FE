@@ -9,12 +9,24 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   build: {
+    sourcemap: false,
+    minify: 'esbuild',
+    cssMinify: true,
     assetsInlineLimit: 0,
+    chunkSizeWarningLimit: 1500,
     rollupOptions: {
       output: {
-        manualChunks: {
-          react: ['react', 'react-dom'],
-          dayjs: ['dayjs'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('scheduler')) return 'vendor-react';
+            if (id.includes('@tanstack/')) return 'vendor-query';
+            if (id.includes('react-router')) return 'vendor-router';
+            if (/jotai|zustand/.test(id)) return 'vendor-state';
+            if (id.includes('dayjs')) return 'vendor-dayjs';
+            return 'vendor';
+          }
+          const m = id.match(/[/\\]src[/\\]pages[/\\]([^/\\]+)/);
+          return m ? `page-${m[1]}` : undefined;
         },
       },
     },
@@ -22,12 +34,15 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    tsconfigPaths(),
     createSvgIconsPlugin({
       iconDirs: [path.resolve(process.cwd(), 'src/shared/assets/icons')],
       symbolId: 'icon-[name]',
     }),
-    tsconfigPaths(),
-    svgr(),
+    svgr({
+      include: ['src/**/*.svg'],
+      exclude: ['**/shared/assets/icons/**', 'public/**'],
+    }),
     VitePWA({
       strategies: 'generateSW',
       injectRegister: 'auto',
@@ -46,12 +61,13 @@ export default defineConfig({
         ],
       },
       workbox: {
-        maximumFileSizeToCacheInBytes: 15 * 1024 * 1024,
-
-        globPatterns: ['**/*.{js,css,html,ico,svg,webp,avif,woff2}'],
-
-        globIgnores: ['**/assets/divider-*.js', '**/assets/diary-mammon-card-*.js', '**/image.png'],
-
+        globPatterns: ['**/*.{html,css,ico,svg,webp,avif,woff2}'],
+        globIgnores: [
+          '**/image.png',
+          '**/assets/divider-*.js',
+          '**/assets/diary-mammon-card-*.js',
+          '**/assets/emotion-like-store-*.js',
+        ],
         runtimeCaching: [
           {
             urlPattern: ({ request }) => request.destination === 'script',
