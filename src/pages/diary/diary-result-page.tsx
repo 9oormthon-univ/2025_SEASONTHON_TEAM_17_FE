@@ -179,8 +179,8 @@ export default function DiaryResultPage() {
         분석한 감정을 확인해보세요!
       </p>
       <DiaryMammonCard
-        title={resultState?.feedbackTitle}
-        content={resultState?.feedbackContent}
+        title={resultState?.feedbackTitle ?? ''}
+        content={resultState?.feedbackContent ?? ''}
         date={new Date()}
         order={(resultState?.emotions as EmotionId[]) ?? []}
         counts={counts}

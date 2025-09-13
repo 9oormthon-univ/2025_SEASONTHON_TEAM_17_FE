@@ -24,6 +24,15 @@ function isListEmptyPayload(raw: unknown) {
   return false;
 }
 
+type DetailRoot = {
+  emotions?: Array<{ emotionId?: number; type?: string; likeCount?: number }>;
+  feedbackTitle?: string;
+  feedbackContent?: string;
+  createdAt?: string;
+  title?: string;
+  content?: string;
+};
+
 type EmotionDTO = { id: number; type: EmotionId; likeCount: number };
 
 const isEmotionId = (v: unknown): v is EmotionId =>
@@ -40,12 +49,12 @@ export default function FriendDiaryPage() {
 
   const vm: DetailVM | null = useMemo(() => toDetailVM(detailQ.data), [detailQ.data]);
 
-  const root = useMemo(() => {
+  const root = useMemo<DetailRoot | null>(() => {
     const r =
       isObj(detailQ.data) && 'data' in detailQ.data
         ? (detailQ.data as Record<string, unknown>).data
         : detailQ.data;
-    return r ?? null;
+    return isObj(r) ? (r as DetailRoot) : null;
   }, [detailQ.data]);
 
   const dateObj = useMemo(() => {

@@ -43,7 +43,7 @@ export default function Header({
               aria-label="뒤로가기"
               className="grid h-[2.8rem] w-[2.8rem] cursor-pointer place-items-center"
             >
-              <Icon name="arrow" className="h-[2.8rem] w-[2.8rem] rotate-180 text-gray-600" />
+              <Icon name="arrow" rotate={180} className="h-[2.8rem] w-[2.8rem] text-gray-600" />
             </button>
           )}
         </div>
