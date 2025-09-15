@@ -144,6 +144,7 @@ export default function DiaryResultPage() {
         emotionLikeStore.setLiked(nextId, true);
         await diariesApi.likeEmotion(nextId);
       }
+
       qc.invalidateQueries({
         queryKey: diariesQueries.byDate(y, m, d).queryKey,
       });

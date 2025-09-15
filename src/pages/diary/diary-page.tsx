@@ -51,12 +51,14 @@ export default function DiaryPage() {
     [monthRes?.data, y, m],
   );
 
+  const isMarked = useMemo(() => new Set(markedDates).has(selectedKey), [markedDates, selectedKey]);
+
   const entryQ = useQuery({
     ...diariesQueries.byDate(y, m, d),
-    refetchInterval: 5000,
-    refetchIntervalInBackground: true,
-    refetchOnReconnect: true,
-    refetchOnWindowFocus: true,
+    enabled: Boolean(monthRes?.data) && isMarked,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    keepPreviousData: true,
   });
   const entryData = entryQ.data?.data as DiaryEntry | undefined;
 
@@ -344,7 +346,7 @@ export default function DiaryPage() {
               onTogglePrivacy={onTogglePrivacy}
             />
 
-            {hasEntry && entryData && (
+            {isMarked && hasEntry && entryData && (
               <DiaryMammonCard
                 title={entryData.feedbackTitle ?? entryData.title}
                 content={entryData.feedbackContent ?? entryData.content}
