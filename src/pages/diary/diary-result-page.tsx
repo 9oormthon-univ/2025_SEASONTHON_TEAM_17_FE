@@ -144,7 +144,10 @@ export default function DiaryResultPage() {
         emotionLikeStore.setLiked(nextId, true);
         await diariesApi.likeEmotion(nextId);
       }
-      qc.invalidateQueries({ queryKey: diariesQueries.byDate(y, m, d).queryKey });
+
+      qc.invalidateQueries({
+        queryKey: diariesQueries.byDate(y, m, d).queryKey,
+      });
     } catch {
       if (prevId) emotionLikeStore.setLiked(prevId, true);
       if (nextId) emotionLikeStore.setLiked(nextId, false);
@@ -160,7 +163,9 @@ export default function DiaryResultPage() {
         if (storeSelected) s.add(storeSelected);
         return s;
       });
-      qc.invalidateQueries({ queryKey: diariesQueries.byDate(y, m, d).queryKey });
+      qc.invalidateQueries({
+        queryKey: diariesQueries.byDate(y, m, d).queryKey,
+      });
     }
   };
 
