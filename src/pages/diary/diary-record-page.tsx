@@ -52,12 +52,16 @@ export default function DiaryRecordPage() {
     [monthRes?.data, y, m],
   );
 
+  // ✅ 선택한 날짜가 작성된 날인지
+  const isMarked = useMemo(() => new Set(marked).has(selectedKey), [marked, selectedKey]);
+
+  // ✅ 작성된 날짜일 때만 상세 호출 + 불필요 리패치 방지
   const entryQ = useQuery({
     ...diariesQueries.byDate(y, m, d),
-    refetchInterval: 5000,
-    refetchIntervalInBackground: true,
-    refetchOnReconnect: true,
-    refetchOnWindowFocus: true,
+    enabled: Boolean(monthRes?.data) && isMarked,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    keepPreviousData: true,
   });
 
   const entryData = entryQ.data?.data as
@@ -333,7 +337,7 @@ export default function DiaryRecordPage() {
               onTogglePrivacy={onTogglePrivacy}
             />
 
-            {hasEntry && entryData && (
+            {isMarked && hasEntry && entryData && (
               <DiaryMammonCard
                 title={entryData.feedbackTitle ?? entryData.title}
                 content={entryData.feedbackContent ?? entryData.content}
